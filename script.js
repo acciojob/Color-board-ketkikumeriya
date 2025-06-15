@@ -1,17 +1,24 @@
-//your JS code here. If required.
-    const board = document.getElementById('board');
-    const BOX_COUNT = 800;
+const container = document.querySelector('.container');
 
-    for (let i = 0; i < BOX_COUNT; i++) {
-      const square = document.createElement('div');
-      square.classList.add('square');
+for (let i = 0; i < 800; i++) {
+    const box = document.createElement('div');
+    box.classList.add('square');
 
-      square.addEventListener('mouseover', () => {
-        square.classList.add('hovered');
+    box.addEventListener('mouseover', () => {
+        box.style.backgroundColor = getRandomColor(); // Change to a random color
         setTimeout(() => {
-          square.classList.remove('hovered');
+            box.style.backgroundColor = ''; // Reset color after 1 second
         }, 1000);
-      });
+    });
 
-      board.appendChild(square);
-	}
+    container.appendChild(box);
+}
+
+function getRandomColor() {
+    const letters = '0123456789ABCDEF';
+    let color = '#';
+    for (let i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+}
